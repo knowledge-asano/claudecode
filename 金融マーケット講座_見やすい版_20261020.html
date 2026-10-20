@@ -2209,6 +2209,10 @@ button.try:hover, button.try.on { background: #0a1730; color: #ffffff; }
 .keep-together { display:inline-block; }
 #bondExplain, #cashExplain { white-space:pre-line; }
 #fxClockText { font-size:18px !important; white-space:nowrap; }
+#slide-26 .bs-diagram { height:200px; }
+#slide-26 .bs-assets, #slide-26 .bs-debt, #slide-26 .bs-equity { padding:6px 10px; gap:2px; }
+#slide-26 .bs-funding { gap:10px; }
+#slide-26 .bs-equity { flex:0 0 auto; }
 </style>
 </head>
 <body>
@@ -4058,8 +4062,8 @@ button.try:hover, button.try.on { background: #0a1730; color: #ffffff; }
     const drop=n('bsDrop'), asset=100-drop, equity=asset-95;
     text('bsDropOut',drop+'％');text('bsAsset',asset+'億円');text('bsEquity',equity+'億円');text('bsRemaining',equity+'億円');
     $('bsRemaining').classList.toggle('neg',equity<0);$('bsEquity').classList.toggle('neg',equity<0);
-    const condition=equity>0?'自己資本は'+equity+'億円残る':equity===0?'自己資本がゼロになる':'自己資本は'+Math.abs(equity)+'億円のマイナス（債務超過）';
-    text('bsExplain','資産が'+drop+'億円減ると、\n'+condition);
+    const condition=equity>0?'自己資本は'+equity+'億円残る':equity===0?'自己資本がゼロになる':'債務超過になる';
+    text('bsExplain',drop===0?'スライダーで資産を下げてみよう':'資産が'+drop+'億円減ると、'+condition);
   }
   function drawCash(){
     const change=n('cashMove'), asset=change*100/10000, future=-asset, need=Math.max(0,-future);
